@@ -1,0 +1,126 @@
+/* ROOT COLORS */
+:root {
+  --primary-color: #0077ff;
+  --text-color: #222;
+  --bg-color: #ffffff;
+}
+
+/* NAVBAR BASE */
+.navbar {
+  width: 100%;
+  background: var(--bg-color);
+  border-bottom: 1px solid #ddd;
+  position: fixed;
+  top: 0;
+  z-index: 999;
+}
+
+.navbar-container {
+  max-width: 1300px;
+  margin: auto;
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* LOGO */
+.navbar-logo a {
+  font-size: 1.6rem;
+  color: var(--primary-color);
+  text-decoration: none;
+  font-weight: 700;
+}
+
+/* MENU (DESKTOP) */
+.nav-menu {
+  display: flex;
+  gap: 25px;
+  list-style: none;
+}
+
+.nav-links {
+  color: var(--text-color);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: 0.3s;
+}
+
+.nav-links:hover {
+  color: var(--primary-color);
+}
+
+/* HAMBURGER ICON */
+.menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+.bar {
+  width: 28px;
+  height: 3px;
+  background-color: var(--text-color);
+  margin: 5px 0;
+  transition: 0.4s;
+}
+
+/* ANIMATION */
+.bar1.open {
+  transform: translateY(8px) rotate(45deg);
+}
+
+.bar2.open {
+  opacity: 0;
+}
+
+.bar3.open {
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+/* ============================
+   MOBILE RESPONSIVE (B2)
+   ============================ */
+@media screen and (max-width: 768px) {
+  
+  /* Mobile: TWO ROWS */
+  .navbar-container {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Logo full width */
+  .navbar-logo {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  /* Hamburger Shows */
+  .menu-icon {
+    display: block;
+  }
+
+  /* MENU HIDDEN BY DEFAULT */
+  .nav-menu {
+    flex-direction: column;
+    width: 100%;
+    display: none;
+    padding-left: 0;
+    margin-top: 10px;
+  }
+
+  /* When active: show menu */
+  .nav-menu.active {
+    display: flex;
+  }
+
+  .nav-item {
+    width: 100%;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+
+  .nav-links {
+    font-size: 1.2rem;
+  }
+}

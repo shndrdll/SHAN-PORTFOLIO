@@ -1,0 +1,613 @@
+/* Smooth Scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+:root {
+  --card-bg-color: #ffffff;
+  --border-color: #dddddd;
+  --text-color: #222222;
+  --primary-color: #0077ff;
+  --bg-color: #fdfdfd;
+}
+
+/* Base styles */
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: #fff;
+  color: #222;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+a {
+  color: #222;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+/* Header/Navbar */
+header {
+  background-color: #f8f8f8;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  padding: 25px 0;
+  position: sticky;
+  top: 0;
+  z-index: 999;
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.logo {
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+
+.logo span {
+  color: #0077ff;
+}
+
+.desktop-menu ul {
+  list-style: none;
+  display: flex;
+  gap: 48px;
+  padding: 0;
+  margin: 0;
+  flex-wrap: wrap;
+}
+
+.desktop-menu a {
+  position: relative;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  transition: color 0.3s ease;
+  color: #000;
+}
+
+.desktop-menu a:hover {
+  color: #0077ff;
+}
+
+.desktop-menu a::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  height: 2px;
+  background-color: #0077ff;
+  bottom: -6px;
+  left: 0;
+  transition: width 0.3s ease;
+}
+
+.desktop-menu a:hover::after {
+  width: 100%;
+}
+
+.desktop-menu a.active {
+  color: #0077ff;
+  font-weight: bold;
+}
+
+.actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.btn {
+  padding: 10px 20px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  font-weight: 500;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 2px 6px rgba(0,119,255,0.3);
+}
+
+.btn:hover {
+  box-shadow: 0 4px 12px rgba(0,119,255,0.5);
+}
+
+.primary-btn {
+  background-color: #0077ff;
+  color: white;
+}
+
+.secondary-btn {
+  background-color: transparent;
+  border: 1px solid #0077ff;
+  color: #0077ff;
+}
+
+.download-btn {
+  background-color: #444;
+  color: #fff;
+  box-shadow: none;
+  border: 1px solid #666;
+}
+
+.download-btn:hover {
+  box-shadow: 0 4px 12px rgba(68,68,68,0.5);
+}
+
+/* Hero Section */
+.hero {
+  padding: 100px 0 250px;
+}
+
+.hero-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 70px;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.hero-blob {
+  position: relative;
+  width: 320px;
+  height: 320px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg,#0077ff 0%,#005ecc 100%);
+  border-radius: 60% 40% 55% 45% / 55% 65% 35% 45%;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 10px 20px rgba(0,119,255,0.3);
+  transition: transform 0.4s ease;
+}
+
+.hero-blob img {
+  width: 120%;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+  position: relative;
+  top: 10%;
+}
+
+.hero-blob:hover {
+  transform: rotate(5deg);
+}
+
+.hero-left {
+  flex: 1;
+  max-width: 600px;
+  min-width: 320px;
+}
+
+.badge {
+  background-color: #0077ff;
+  color: white;
+  padding: 8px 14px;
+  border-radius: 18px;
+  font-size: 0.9rem;
+  display: inline-block;
+  margin-bottom: 12px;
+  transition: background-color 0.3s ease;
+}
+
+.badge:hover {
+  background-color: #3399ff;
+  cursor: default;
+}
+
+.hero-left h1 {
+  font-size: 2.8rem;
+  margin: 0.5rem 0 20px;
+  font-weight: 700;
+}
+
+.highlight {
+  color: #0077ff;
+}
+
+.button-group {
+  margin-top: 30px;
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.social-icons {
+  margin-top: 20px;
+}
+
+.social-icons a {
+  margin-right: 15px;
+  color: #0077ff;
+  font-size: 1.7rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.social-icons a:hover {
+  color: #3399ff;
+  transform: scale(1.1);
+}
+
+/* Sections */
+section {
+  padding: 80px 0;
+  min-height: 80vh;
+  scroll-margin-top: 80px;
+  margin-bottom: 80px;
+}
+
+#about, #projects, #contact {
+  background-color: #fdfdfd;
+  border-top: 1px solid #eee;
+}
+
+.dark-mode #about,
+.dark-mode #projects,
+.dark-mode #contact {
+  background-color: #1a1a1a;
+  border-top: 1px solid #333;
+}
+
+/* About Section */
+.about-container {
+  padding: 40px 0;
+  max-width: 1000px;
+  margin: auto;
+}
+
+.about-container h2 {
+  font-size: 2rem;
+  color: #0077ff;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.about-container p {
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #444;
+  margin-bottom: 40px;
+}
+
+.about-container h3 {
+  font-size: 2rem;
+  color: #0077ff;
+  margin-bottom: 15px;
+}
+
+.contact-methods p {
+  font-size: 1.05rem;
+  line-height: 1.6;
+  color: #444;
+  margin: 8px 0;
+}
+
+.contact-methods a {
+  color: #0077ff;
+  text-decoration: none;
+}
+
+.contact-methods a:hover {
+  text-decoration: underline;
+}
+
+/* Skills */
+.skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  padding-bottom: 80px;
+  justify-content: flex-start;
+}
+
+.skills span {
+  display: flex;
+  align-items: center;
+  background-color: #f0f0f0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #0077ff;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  max-width: 120px;
+  justify-content: center;
+  white-space: nowrap;
+}
+
+.skills span i {
+  margin-right: 6px;
+  font-size: 1.2rem;
+}
+
+.skills span:hover {
+  background-color: #e0e0e0;
+  transform: translateY(-2px);
+}
+
+/* Project Section */
+#projects {
+  padding: 80px 0;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.project-card h3, .project-card p, .project-card a {
+  text-align: left;
+}
+
+.project-card a {
+  color: #82c7ff;
+  text-decoration: none;
+}
+
+.project-card a:hover {
+  text-decoration: underline;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card .todo-list-app {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: black;
+  margin-bottom: 10px;
+}
+
+.dark-mode .project-card .todo-list-app {
+  color: white !important;
+}
+
+/* Footer */
+.footer {
+  text-align: center;
+  padding: 20px 0;
+  background-color: #111;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.dark-mode .footer {
+  color: #aaa;
+}
+
+/* Dark Mode Overrides */
+.dark-mode {
+  background-color: #121212;
+  color: #eee;
+}
+
+.dark-mode header {
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 5px rgba(255,255,255,0.07);
+}
+
+.dark-mode a {
+  color: #9cdcfe;
+}
+
+.dark-mode .desktop-menu a {
+  color: #fff;
+}
+
+.dark-mode .btn {
+  background-color: #333;
+  color: #fff;
+  border: 1px solid #555;
+}
+
+.dark-mode .secondary-btn {
+  background-color: transparent;
+  border: 1px solid #9cdcfe;
+  color: #9cdcfe;
+}
+
+.dark-mode .primary-btn {
+  background-color: #0077ff;
+  color: white;
+}
+
+.dark-mode .download-btn {
+  border: 1px solid #a0d2ff;
+}
+
+/* Responsive Fixes */
+@media (max-width: 900px) {
+  .hero-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .hero-blob {
+    width: 280px;
+    height: 280px;
+    margin-bottom: 30px;
+  }
+
+  
+
+  .hero-left {
+    max-width: 100%;
+    text-align: center;
+  }
+
+  .button-group {
+    justify-content: center;
+  }
+
+  .social-icons a {
+    font-size: 1.5rem;
+  }
+
+  .desktop-menu ul {
+    gap: 24px;
+    justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .skills {
+    justify-content: center;
+  }
+
+  .skills span {
+    font-size: 0.9rem;
+    padding: 8px 14px;
+    max-width: 110px;
+  }
+
+  .skills span i {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .skills span {
+    font-size: 0.85rem;
+    padding: 6px 10px;
+  }
+
+  .skills span i {
+    font-size: 1rem;
+  }
+
+  .project-card a {
+    font-size: 0.95rem;
+  }
+
+  #projects {
+    padding: 40px 0;
+  }
+
+  .desktop-menu ul {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  header {
+    padding: 15px 0;
+  }
+
+  .hero-left h1 {
+    font-size: 2rem;
+  }
+
+  .badge {
+    font-size: 0.85rem;
+    padding: 6px 12px;
+  }
+}
+
+/* Hamburger button hidden on desktop */
+.hamburger {
+  display: none;
+  font-size: 1.5rem;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+/* Mobile menu styling */
+@media (max-width: 768px) {
+  .desktop-menu {
+    display: none;
+    width: 100%;
+    text-align: center;
+    margin-top: 15px;
+  }
+
+  .desktop-menu.open {
+    display: block;
+  }
+
+  .desktop-menu ul {
+    flex-direction: column;
+    gap: 15px;
+    padding: 0;
+  }
+
+  .desktop-menu a {
+    font-size: 1.1rem;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+/* === Dark Mode Enhancements === */
+.dark-mode {
+  background-color: #121212;
+  color: #ffffff; /* main text white */
+}
+
+.dark-mode header {
+  background-color: #1e1e1e;
+  box-shadow: 0 2px 5px rgba(255, 255, 255, 0.07);
+}
+
+.dark-mode a {
+  color: #82c7ff; /* links blue in dark mode */
+}
+
+.dark-mode .desktop-menu a {
+  color: #ffffff; /* navbar links white */
+}
+
+.dark-mode .desktop-menu a.active {
+  color: #82c7ff; /* active link blue */
+}
+
+.dark-mode .btn {
+  color: #ffffff;
+}
+
+.dark-mode .primary-btn {
+  background-color: #0077ff;
+  color: #ffffff;
+}
+
+.dark-mode .secondary-btn {
+  background-color: transparent;
+  color: #0077ff;
+  border: 1px solid #0077ff;
+}
+
+.dark-mode .download-btn {
+  background-color: #444;
+  border: 1px solid #82c7ff;
+  color: #82c7ff;
+}
+
+.dark-mode .badge {
+  background-color: #0077ff;
+  color: #ffffff;
+}
+
+.dark-mode .about-container p {
+  color: #ffffff; /* general paragraphs white */
+}
+
+/* Skills with blue theme in dark mode */
+.dark-mode .skills span {
+  background-color: #1e1e1e; /* dark background */
+  color: #0077ff; /* blue text */
+  border: 1px solid #0077ff;
+}
+
+.dark-mode .skills span:hover {
+  background-color: #2a2a2a; /* slightly lighter */
+  color: #82c7ff; /* hover text lighter blue */
+}
